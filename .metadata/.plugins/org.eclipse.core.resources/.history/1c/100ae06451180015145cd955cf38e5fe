@@ -1,0 +1,26 @@
+package towers.of.hanoi;
+
+import list.implementation.of.stacks.Stack;
+
+public class TowerOfHanoiTest {
+
+	public static void main( String args[]){
+		
+		TowerOfHanoi tower = new TowerOfHanoi();
+		
+		Stack A = new Stack() ;
+		A.push("xxx - xxx - xxx") ;
+		A.push("xxx - xxx") ;
+		A.push("xxx") ;
+		
+		Stack B = new Stack() ;
+		Stack C = new Stack() ;
+		
+		tower.move(A.size(), A, B, C) ;
+		System.out.println("\nThe contents of Stack B are :");
+		B.print() ;
+		
+		tower.towers(4, 'A', 'B', 'C') ;
+	}
+	
+}

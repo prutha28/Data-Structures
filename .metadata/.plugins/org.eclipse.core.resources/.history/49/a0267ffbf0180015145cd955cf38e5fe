@@ -1,0 +1,32 @@
+package applications.of.stack;
+
+import java.util.Random;
+
+import list.implementation.of.stacks.Stack;
+
+public class SpanUsingStack {
+
+	int numDays ;
+	float[] prices ;
+	int[] span ;
+	Stack spanStack ;
+	
+	public SpanUsingStack( int numDays ){
+		this.numDays = numDays ;
+		span = new int[ numDays ] ;
+		spanStack = new Stack() ;
+		prices = new float[ numDays ] ;
+		Random random = new Random() ;
+		
+		for (int i = 0; i < prices.length; i++) {
+			prices[ i ] = random.nextFloat() * 100 ;
+			spanStack.push( prices[ i ] ) ;
+		}
+	}
+	
+	public Stack calculateSpans(){
+		return null;
+		
+	}
+	
+}

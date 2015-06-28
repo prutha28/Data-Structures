@@ -1,0 +1,13 @@
+package bubble.sorting;
+
+public class BubbleSort {
+
+	public BubbleSort( int[] data ){
+		this.sort( data ) ;
+	}
+
+	private void sort(int[] data) {
+		
+	}
+	
+}

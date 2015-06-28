@@ -1,0 +1,162 @@
+package sorting.merge;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MergeSort {
+
+	/**
+	 * RECURSIVE procedure.
+	 * This function takes the unsorted List L of size n as the input.
+	 * SPLITS it into 2 smaller lists ( each of size n/2)
+	 * and SORTS the smaller list recursively.
+	 * and then MERGES them.
+	 * @param L
+	 * @return
+	 */
+	public static int[] SORT( int[] L){
+
+		int n = L.length ;
+
+		// BASE CONDITION : 
+
+		if( n == 1 )
+			return L ;
+
+		// INDUCTIVE STEPs
+		
+		// Step 1 : Split L into 2 Non-empty Lists - L1 & L2.
+
+		int[] L1 , L2 ;
+		// n even
+		if( n %2 == 0 ){
+			L1 = new int[ n/2] ;
+			L2 = new int[ n/2] ;
+		}else{
+			L1 = new int[ n/2] ;
+			L2 = new int[ 1 + L1.length] ;
+		}
+
+		// Copy the contents to L1 & L2.
+		
+		int i ;
+		
+		for ( i = 0; i < L1.length; i++) {
+			L1[ i ] = L[i] ;
+		}
+		
+		
+		for ( int j = 0; j < L2.length; j++) {
+			L2[ j ] = L [ i ] ;
+			i++ ;
+		}
+		
+		// Step 2 : Sort L1 & L2.
+		// Sort L1 to sortedList1.
+
+		int[] sortedList1 = SORT( L1 ) ;
+		
+		// Sort L2 to sortedList2.
+		int[] sortedList2 = SORT( L2 ) ;
+		
+		// Step 3 : Merge sortedList1 & sortedList2.
+
+		int[] sortedList = MERGE(sortedList1, sortedList2 ) ;
+		return sortedList;
+
+	}
+
+
+
+	/**
+	 * This function takes as input the sorted arrays L1 & L2, 
+	 * merges them into a single sorted array & returns it.
+	 * @param L1
+	 * @param L2
+	 * @return
+	 */
+	public static int[] MERGE( int[] L1, int[] L2){
+
+		// Counters on L1 & L2.
+		int counter1 = 0 ;
+		int counter2 = 0 ;
+
+		// Counter on sorted array.
+		int counter3 = 0 ;
+
+		int[] sortedArray = new int[ L1.length + L2.length ] ;
+
+
+		// This loop terminates as soon as we finish reading any one array,
+		// even if there are elements left in the other array.
+
+		while( counter1 < L1.length && counter2 < L2.length){
+
+			if( L1[counter1] <= L2[counter2] ){	// In-place. use <=
+				sortedArray[ counter3 ] = L1[ counter1 ] ;
+				counter1++ ;
+			}else{
+				sortedArray[ counter3 ] = L2[ counter2 ] ;
+				counter2++ ;
+			}
+
+			counter3++ ;
+		}
+
+		// The elements left are copied here.
+
+		while( counter1 < L1.length ){
+			sortedArray[ counter3 ] = L1[ counter1] ;
+			counter1++ ;
+			counter3++ ;
+		}
+
+		while( counter2 < L2.length){
+			sortedArray[ counter3 ] = L2[ counter2 ] ;
+			counter2++ ;
+			counter3++ ;
+		}
+
+		return sortedArray;
+
+	}
+
+	private static List<Integer> MERGE(List<Integer> list1, List<Integer> list2) {
+
+		List<Integer> sortedList = new ArrayList<Integer>(list1.size() + list2.size()) ;
+
+		int counter1 = 0 ; // Counter for list1
+		int counter2 = 0 ; // Counter for list2
+		int counter3 = 0 ; // Counter for list3
+
+		while ( counter1 < list1.size() && counter2 < list2.size()) {
+
+			int first = list1.get(counter1) ; 
+			int other = list2.get(counter2) ;
+
+			if( first <= other ){
+				sortedList.set(counter3, first) ;
+				counter1++ ;
+			}else{
+				sortedList.set(counter3, other) ;
+				counter2++ ;
+			}
+
+			counter3++ ;
+		}
+
+		while ( counter1 < list1.size()) {
+			sortedList.set(counter3, list1.get(counter1) ) ;
+			counter1++ ;
+			counter3++ ;
+		}
+
+		while ( counter2 < list2.size()) {
+			sortedList.set(counter3, list2.get(counter2) ) ;
+			counter2++ ;
+			counter3++ ;
+		}
+
+		return sortedList;
+	}
+}

@@ -1,0 +1,27 @@
+package circular.linked.lists;
+
+public class CircularLinkedList {
+
+	class Node{
+		private int data ;
+		private Node next ;
+
+		public Node(){
+			this.data  = -1;
+			this.next = null ;
+		}
+		
+		public Node( int data ){
+			this.data  = data ;
+			this.next = null ;
+		}
+	}
+
+
+
+
+
+
+
+}
+

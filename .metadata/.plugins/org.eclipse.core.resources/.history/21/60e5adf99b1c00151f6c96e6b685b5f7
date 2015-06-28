@@ -1,0 +1,22 @@
+package geek.linked.lists;
+
+public class AlternateSplitInLL {	
+	
+	public static void alterateSplit( Node source, Node a, Node b){
+
+		Node aDummy = a ;
+		Node aTail = aDummy ;
+
+		Node bDummy = b ;
+		Node bTail = bDummy;
+
+		Node current = source ;
+
+		while( current != null ){
+
+			current = current.next ;
+		}
+
+	}
+
+}

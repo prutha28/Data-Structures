@@ -1,0 +1,21 @@
+package geek.linked.lists;
+
+public class MiddleOfLL {
+
+	
+	public static int getMid( Node head){
+		int mid = 0 ;
+		Node first = head ;
+		Node second = head.next ;
+		
+		while( second != null){
+			second = second.next ;
+			while( second != null){
+				second = second.next ;
+				first = first.next ;
+			}
+		}
+		
+		return mid ;
+	}
+}

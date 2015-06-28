@@ -1,0 +1,34 @@
+package sorting.merge;
+
+public class MergeSort_Cormen_Fashion {
+
+	/**
+	 * This function takes an array A and sorts the part of the array from start to end. i.e. A[ start ... end-1 ]
+	 * @param A
+	 * @param start
+	 * @param end
+	 */
+	public void mergeSort(int[] A, int start, int end) {
+				
+		// BASE CASEs
+		if( start == end ) // only 1 element.
+			return ;
+		
+		else if( start > end )	// An invalid condition.
+			return ;
+		
+		// INDUCTIVE
+		else{
+			// Step 1: Spilt the array A into 2 non-empty
+			// sub-arrays from 0 to mid and from ( mid +1 ) to n-1
+			
+			int mid = start + ( end - start ) /2 ;
+			mergeSort(A, start,  mid ) ;	// Sorts the A[ 0 ... mid ]
+			mergeSort(A, mid +1, end ) ;	// Sorts the A[ mid+1 ... n-1 ]
+			mergeSort(A, start, end) ;
+			
+		}
+		
+	}
+
+}

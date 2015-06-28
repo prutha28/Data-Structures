@@ -1,0 +1,23 @@
+package geek.linked.lists;
+
+public class AlternateSplitInLL {	
+	
+	int arr[] = { 1, 2, 3, 4, 5, 6, 7 } ;
+	LinkedList list = new LinkedList() ;
+	
+	public static void alterateSplit( Node source, Node a, Node b){
+
+		Node current = source ;
+
+		if( current == null ){
+			return ;
+		}
+		while( current != null ){
+			
+			
+			current = current.next ;
+		}
+
+	}
+
+}

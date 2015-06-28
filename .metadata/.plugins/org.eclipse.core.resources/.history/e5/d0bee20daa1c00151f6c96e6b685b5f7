@@ -1,0 +1,46 @@
+package geek.linked.lists;
+
+public class AlternateSplitInLL {	
+
+	static LinkedList list = new LinkedList() ;
+	static LinkedList alist = new LinkedList() ;
+	static LinkedList blist = new LinkedList() ;
+
+	public static void alterateSplit( Node head, Node aHead, Node bHead){
+
+		Node current = head ;
+		Node aCurrent = aHead ;
+		Node bCurrent = bHead ;
+		
+		// 0 nodes
+		if( current == null ){
+			return ;
+		}
+
+		// 1 node
+		if( current !=null && current.next == null ){
+			aHead = current ;
+			bHead = null ;
+			return ;
+		}
+		while( current != null ){
+
+			aHead = alist.appendToTail(aHead, current) ;
+			aCurrent = aCurrent.next ;
+			current = current.next ;
+
+			if( current != null ){
+				blist.appendToTail(bHead, current) ;
+				bCurrent = bCurrent.next ;
+				current = current.next ;
+			}
+
+		}
+
+		System.out.println("\nSublist1 :");
+		list.printList( aHead ) ;
+		System.out.println("\nSublist2 :");
+		list.printList( bHead ) ;
+	}
+
+}

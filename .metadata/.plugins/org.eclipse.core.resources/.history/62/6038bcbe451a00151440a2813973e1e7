@@ -1,0 +1,11 @@
+package representation.of.graphs;
+
+public class LinkageNode {
+
+	Node nextNode ;
+	LinkageNode next ;
+}
+
+
+
+

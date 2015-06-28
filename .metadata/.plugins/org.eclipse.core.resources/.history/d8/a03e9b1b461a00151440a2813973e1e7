@@ -1,0 +1,46 @@
+package representation.of.graphs;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class Node {
+ 
+	int weight ;	// weight of the Node.
+	LinkageNode linkNodes ;
+
+	// Just maintains a set of Nodes. 
+	Set<Node> nodeSet = new HashSet<Node>() ;
+	
+	public Node(int weight, LinkageNode linkNodes) {
+		this.weight = weight;
+		this.linkNodes = linkNodes;
+	}
+	
+	public Node() {
+		this( -1, null ) ;
+	}
+	
+	public void connectVertices( int weight1 , int weight2 ){
+		
+		Node node1 = new Node( weight1, null ) ;
+		Node node2 = new Node( weight2, null ) ;
+		
+		// node is not connected to any other node yet.
+		if( node1.linkNodes == null ){
+			node1.linkNodes.nextNode = node2 ;
+			node1.linkNodes.next = null ;	
+		}else{
+			LinkageNode current = node1.linkNodes ;
+			while( current.next != null ){
+				current = current.next ;
+			}
+			current.next = new LinkageNode( node2, null ) ;
+		}
+		
+	}
+	
+	
+	public Node getNodeWithWeight( int weight ){
+		return Node() ;
+	}
+}

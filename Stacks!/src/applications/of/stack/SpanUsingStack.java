@@ -1,0 +1,81 @@
+package applications.of.stack;
+/**
+ * http://www.geeksforgeeks.org/the-stock-span-problem/
+ */
+import java.util.Random;
+
+import list.implementation.of.stacks.Stack;
+
+public class SpanUsingStack {
+
+	int numDays ;
+	float[] prices ;
+	int[] span ;
+	Stack spanStack ;
+
+	public SpanUsingStack( int numDays ){
+		this.numDays = numDays ;
+		span = new int[ numDays ] ;
+		prices = new float[ numDays ] ;
+		Random random = new Random() ;
+
+		for (int i = 0; i < prices.length; i++) {
+			prices[ i ] = random.nextFloat() * 100 ;
+		}
+	}
+
+	/**
+	 *  @return Stack of indices.
+	 */
+	public int[] calculateSpans(){
+		Stack S = new Stack() ;	// Stack holds indices, not prices.
+		S.push( 0 ) ;
+
+		// The Span value of the first element is always 1.
+		span[ 0 ] = 1 ;
+
+		int i = 1 ;
+
+		// Use i to iterate over the prices array.
+		while( i < prices.length){
+
+			int top = (Integer)S.elementAtTop() ;
+
+			// As long as the Stack is not empty AND if the element at the top of the stack is less than the current element, pop it off.
+			while( !S.isEmpty() && prices[top] < prices[i])
+				S.pop() ;
+
+			// When the while loop exits, it is either because the Stack is empty ...
+			// which means all the elements in the stack were less than current element 
+
+			if( S.isEmpty()){
+				span[ i ] = i + 1 ;  // current index - first index + 1
+			}
+			// OR because the element at the top was greater than the current element. So h(i) is top()
+			else{ // top > prices[ i] => we found h (i ) , which is top AND we know SPAN = i - h(i)
+				span[i] = (i - (Integer)S.elementAtTop());
+			}
+
+			// Push the index of the latest element anyway.
+			S.push( i ) ;
+			i++  ;
+		}
+
+		return span ;
+	}
+	
+	
+	public void displaySpans(){
+
+		System.out.println("\nThe prices for the " + numDays + " days are as shown:");
+		for (int i = 0; i < prices.length; i++) {
+			System.out.printf("%6.2f", prices[ i ]);
+		}
+
+		System.out.println("\nThe spans for the " + numDays + " days are as shown:");
+		for (int i = 0; i < span.length; i++) {
+			System.out.printf("%4d", span[ i ]);
+		}
+	}
+
+}

@@ -1,0 +1,25 @@
+package score.card.game;
+
+/**
+ * @author prutha!
+ *
+ *	This will consist of an underlying array of GameEntries of some fixed size.
+ *	that we shall call capacity.
+ */
+
+public class ScoreCard {
+
+	public static final int CAPACITY = 10 ;
+	private int numEntries ;	// actual number of entries. ( <= CAPACITY)
+	private GameEntry[] board ;
+	
+	public void addEntry( GameEntry entry){
+		
+	}
+	
+	public GameEntry removeEntry( int index ){
+		GameEntry entry = board[ index ] ;
+		
+		return entry ;
+	}
+}

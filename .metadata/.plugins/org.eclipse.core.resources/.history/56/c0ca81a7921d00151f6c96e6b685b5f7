@@ -1,0 +1,18 @@
+package circular.linked.lists;
+
+import circular.linked.lists.CircularLinkedList.Node;
+
+public interface ICircularLinkedList {
+
+	/**
+	 * Adding a node to the start of the list.
+	 * @param entry
+	 */
+	public void addNode( Node entry) ;
+	/**
+	 * Removing node from the start of the list.
+	 * @param entry
+	 */
+	public void removeNode( Node entry) ;
+
+}

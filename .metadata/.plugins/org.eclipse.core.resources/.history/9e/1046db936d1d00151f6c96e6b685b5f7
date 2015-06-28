@@ -1,0 +1,720 @@
+package geek.linked.lists;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class LinkedListUtils {
+
+
+	/**
+	 * http://www.geeksforgeeks.org/write-a-function-to-get-nth-node-in-a-linked-list/
+	 * This method returns the data present at the index.
+	 * @param head
+	 * @param index
+	 * @return
+	 */
+	public static int getNodeAtIndex( Node head, int index )
+	{
+		int count = 0 ;		// 0 because index based. should have been 1 if position based.
+		Node current = head ;
+
+		if( current == null)
+		{
+			System.out.println("List is empty.");
+			return( -1 ) ;
+		}
+
+		while( current != null){
+			if( count == index )
+				return current.data ;
+			current = current.next ;
+			count++ ;
+		}
+
+		// If you reach this point implies, you did not find 
+		// the index even when u reached the end of the LL.
+
+		System.out.println("Please Enter a valid Index.");
+		return( -1 ) ;
+
+	}
+
+	/**
+	Given a linked list which is sorted, how will you insert in sorted way
+
+	Algorithm:
+
+	Let input linked list is sorted in increasing order.
+
+	1) If Linked list is empty then make the node as head and return it.
+
+	2) If value of the node to be inserted is smaller than value of head node
+    then insert the node at start and make it head.
+
+	3) In a loop, find the appropriate node after which the input node (let 9) is
+    to be inserted. To find the appropriate node start from head, keep moving 
+    until you reach a node GN (10 in the below diagram) who's value is 
+    greater than the input node. The node just before GN is the appropriate
+    node (7).
+
+	4) Insert the node (9) after the appropriate node (7) found in step 3.
+	 */
+
+
+
+	public static Node sortedInsert( Node head, int data ){
+
+		Node current = head ;
+		Node newNode = new Node( data, null ) ;
+		Node prev = null ;
+
+		// First Insertion
+		if( head == null){
+			head = newNode ;
+			return head ;
+		}
+
+		while( current !=null && current.data <= data )
+		{
+			prev = current ; 
+			current = current.next ;
+		}
+
+		if( current == null )
+			prev = newNode ;
+		else //if( current.data > data )
+			current.next = newNode ;
+		return head;
+	}
+
+	/**
+	 * This method sorts the LL with the head provided.
+	 * @param head
+	 * @return
+	 */
+	public static Node insertSort( Node head ){
+
+		Node current = head ;
+
+		if( head == null )
+			return null ;
+
+		while( current != null){
+			sortedInsert(head, current.data) ;
+			current = current.next ;
+		}
+
+		return head ;
+	}
+
+	/**
+	 * This function counts the number of nodes in a linked list.
+	 * @param head
+	 * @return
+	 */
+	public static int count( Node head){
+		int count = 0 ;
+
+		Node current = head ;
+
+		while( current != null){
+			count++ ;
+			current = current.next ;
+		}
+		return count ;
+	}
+
+	/**
+	 * This method counts the occurences of the given element in the list.
+	 * @param head
+	 * @param element
+	 * @return
+	 */
+	public static int countOccurences( Node head, int element ){
+
+		int count = 0 ;
+		Node current = head ;
+
+		if( head == null )
+			return 0;
+
+		while( current != null){
+			if( current.data == element )
+				count++ ;
+			current = current.next ;
+		}
+
+		return count ;
+	}
+
+
+	public static int countOccurences_rec( Node head, int element ){
+
+		Node current = head ;
+		// Base Case 
+		if( current == null)
+			return 0 ;
+
+		else{
+			if( current.data == element)
+				return ( 1 +
+						countOccurences_rec(current.next, element)) ;
+			else
+				return countOccurences_rec(current.next, element) ;
+		}
+	}
+
+	public static Node deleteList( Node head){
+
+		Node current = head ;
+		Node next ;
+
+		if( current == null )
+			return null;
+
+		while( current != null ){
+			next  = current.next ;
+			current.next = null ;
+			current = next  ;
+		}
+
+
+		//	You could as well use a previous & current pointer.
+
+		//		Node current = head ;
+		//		Node prev ;
+		//
+		//		if( current == null )
+		//			return null;
+		//
+		//		while( current != null ){
+		//			prev = current ;
+		//			current  = current.next ;
+		//			prev.next = null ;
+		//			prev = null ;
+		//		}
+		//		
+
+		return current ;
+	}
+
+
+
+	/**
+	 * Nth node from the end of a Linked List.
+	 * Given a Linked List and a number n, write a function that returns the value
+	 * at the nth node from end of the Linked List.
+
+		Method 1 (Use length of linked list)
+
+		1) Calculate the length of Linked List. Let the length be len.
+		2) Print the (len – n + 1)th node from the begining of the Linked List.
+	 */
+
+
+
+	public static void getNthNodeFromEnd( Node head, int n){
+
+		Node current = head ;
+
+		// total number of nodes.
+		int len = count(head) ;
+
+		// n nodes from the end means (len - n ) nodes from the beginning.
+		// We want to get to the ( len- n + 1)th position.
+
+		int i = 0  ;
+
+		while( current !=null && i < ( len - n )){
+			current = current.next ;
+			i++ ;
+		}
+		// here i = ( len -n ) and since we are 0 indexing, we have reached the ( len -n +1) th element.
+		System.out.printf("%4d", current.data);
+	}
+
+
+	public static void getNthNodeFromEnd2( Node head, int n){
+
+		Node first = head ;
+		Node second = head ;
+
+		int i = 0 ;
+		// traverse first n nodes using first pointer.
+		while( i < n){
+			first = first.next ;
+			i++ ;
+		}
+		// Now make first pointer traverse the remaining len -n positions.
+		// At the same time start the second pointer so that it traversing the ( len - n ) nodes form the start => n from the end.
+
+		while( first !=null){
+			first = first.next ;
+			second = second.next ;
+		}
+
+		System.out.println(second.data);
+	}
+
+	/**
+	 *
+	 * @param a the head of the first list.
+	 * @param b the head of the second list.
+	 * @return true if both the linked lists have the same data and the same arrangement of data.
+	 */
+
+	// Iterative
+	public static boolean areIdentical( Node a, Node b )
+	{
+		Node ahead = a ;
+		Node bhead = b ;
+
+		// both the lists are empty.
+		if( ahead == null && bhead == null )
+			return true ;
+
+		else if( ahead != null && bhead != null ){
+
+			while( true ){
+				// When any one of the lists finishes before the other.
+				if( ahead == null || bhead == null)
+					return false ;
+
+				else if( ahead.data == bhead.data){
+					// Check for the next pair of nodes.
+					ahead = ahead.next ;
+					bhead = bhead.next ;
+				}else
+					return false ;
+
+			}	
+
+		}
+		else // One of the lists is empty and the other is not.
+		{
+			return false;
+		}
+
+	}
+
+	// Recursive solution
+	public static boolean isIdentical( Node a, Node b ){
+
+		Node ahead = a ;
+		Node bhead = b ;
+
+		// Bases Cases
+
+		// both the lists are empty.
+		if( ahead == null && bhead == null )
+			return true ;
+
+		else if( ahead == null && bhead !=null )
+			return false ;
+
+		else if( ahead != null && bhead ==null )
+			return false ;
+
+		else{
+			if( ahead.data == bhead.data){
+				return isIdentical(ahead.next, bhead.next) ; 
+			}else{
+				return false ;
+			}
+		}
+	}
+
+
+	/**
+	 * Given two sorted lists a and b, merge them to form a sorted list, 
+	 * result and return the head of the result list.
+	 * @param a
+	 * @param b
+	 */
+	public static Node sortedMerge( Node a, Node b){
+
+		Node ahead = a ;
+		Node bhead = b ;
+		LinkedList result = new LinkedList();
+		Node resultHead = result.head ;
+
+		while( true){
+			if( ahead == null && bhead == null )
+				return null ;
+			else if( ahead == null ){
+				resultHead = bhead ;
+				break ;
+			}
+			else if( bhead == null ){
+				resultHead = ahead ;
+				break ;
+			}
+			else{
+				if( ahead.data <= bhead.data){
+					resultHead = result.appendToTail(ahead.data) ;
+					ahead = ahead.next ;
+				}else{
+					resultHead = result.appendToTail(bhead.data) ;
+					bhead = bhead.next ;
+				}
+				resultHead = resultHead.next ;
+			}
+		}
+		return result.head ;	
+	}
+
+	// Recursive sorted merge.
+	public static Node sortedMerge1( Node a, Node b ){
+
+		Node ahead = a ;
+		Node bhead = b ;
+		LinkedList result = new LinkedList();
+		Node resultHead = result.head ;
+		// Bases Cases
+		if( ahead == null && bhead == null )
+			return null ;
+		else if( ahead == null ){
+			//			resultHead = bhead ;
+			return bhead ;
+		}
+		else if( bhead == null ){
+			//			resultHead = ahead ;
+			return ahead ;
+		}
+		else{
+			if( ahead.data <= bhead.data){
+				resultHead = ahead ;
+				resultHead.next = sortedMerge1(ahead.next, bhead) ;
+			}else{
+				resultHead = bhead ;
+				resultHead.next = sortedMerge1(ahead, bhead.next) ;
+			}
+		}
+		return resultHead;
+	}
+
+	/**
+	 * Pairwise swap elements of a given linked list
+	 * Given a singly linked list, write a function to swap elements pairwise.
+	 * For example, if the linked list is 1->2->3->4->5 then the function should change it to 2->1->4->3->5,
+	 * and if the linked list is 1->2->3->4->5->6 then the function should change it to 2->1->4->3->6->5.
+	 * 
+	 * METHOD 1 (Iterative) 
+	 * Start from the head node and traverse the list. While traversing swap data of each node with its next node’s data.
+	 */
+	// Iterative.
+	public static void pairwiseSwap( Node head )
+	{
+		Node current = head ;
+		Node nextNode;
+
+		while( current != null ){
+			nextNode = current.next ;
+			// just swap the data
+			if( nextNode !=null){
+				int temp = nextNode.data ;
+				nextNode.data = current.data;
+				current.data = temp ;
+				current = nextNode.next ;
+			}else{
+				current = nextNode ;
+			}
+
+		}		
+	}
+
+	/**
+	 * METHOD 2 (Recursive)
+	 * If there are 2 or more than 2 nodes in Linked List then swap the first two nodes 
+	 * and recursively call for rest of the list.
+	 * @param head
+	 */
+	// Recursive
+	public static void pairwiseSwap1( Node head ){
+		Node current = head ;
+
+		// BASE CASES
+
+		// Empty list
+		if( current == null)
+			return ;
+
+		// 1 element
+		else if (current.next == null)
+			return ;
+
+		else{
+			int temp = current.data ;
+			current.data = current.next.data ;
+			current.next.data = temp ;
+			pairwiseSwap1(current.next.next) ;
+		}
+	}
+
+
+	/**
+	 * Method to move the last element to teh front of the list.
+	 * @return 
+	 */
+
+	public static Node moveLastToFirst( Node head )
+	{
+		Node current = head ;
+		Node prev = null ;
+
+		// 0 or 1 elements.
+		if( current == null) 
+			return null ;
+
+		if( current.next == null )
+			return current ;
+
+		while (current.next !=null ) {
+			prev = current ;
+			current = current.next ;
+		}
+
+		/**
+		 * When we reach here, current points to the last node on the linked list
+		 * and prev points to the second last node in the linked list.
+		 */
+
+		current.next = head ;	// The last node will now point to the first node of the list.
+		head = current ;
+		prev.next = null ;
+
+		return head ;
+	}
+
+
+	/**
+	 * Swap nodes in a linked list without swapping data
+	 * Given a linked list and two keys in it, swap nodes for two given keys. Nodes should be swapped by changing links.
+	 * Swapping data of nodes may be expensive in many situations when data contains many fields.
+	 * It may be assumed that all keys in linked list are distinct.
+	 * 
+	 * Examples:
+	 * 
+	 * Input:  10->15->12->13->20->14,  x = 12, y = 20
+	 * Output: 10->15->20->13->12->14
+	 * 
+	 * Input:  10->15->12->13->20->14,  x = 10, y = 20
+	 * Output: 20->15->12->13->10->14
+	 * 
+	 * Input:  10->15->12->13->20->14,  x = 12, y = 13
+	 * Output: 10->15->13->12->20->14
+	 */
+
+
+	public static void swapLinks( Node head ){
+
+	}
+
+	/**
+	 * Keep 2 pointers, current & nextNode.
+	 * If duplicates are present, remove the second one out of the two.	
+	 * @param head
+	 * @return
+	 */
+	public static Node removeDuplicatesInSorted( Node head ){
+
+		Node current = head ;
+		Node nextNode = head.next ; 
+
+		// Empty List.
+		if( current == null )
+			return null ;
+
+		while( current.next != null ){
+			nextNode = current.next ;
+
+			if( current.data == nextNode.data )
+			{
+				current.next = nextNode.next ;
+				current = nextNode ;
+				nextNode = null ;
+			}
+			current = current.next ;
+		}
+		return head ;
+	}
+
+	public static Node removeDuplicatesInUnSorted( Node head ){
+		Node current = head ;
+		Map<Integer, Integer> dataCountMap = new HashMap<Integer, Integer>() ;
+		int key ;
+
+		while( current != null)
+		{
+			key = current.data ;
+			if( dataCountMap.containsKey(key)){
+				int count = dataCountMap.get(key);
+				dataCountMap.put(key , count++) ;
+			}else{
+				dataCountMap.put(key , 1) ;	
+			}
+
+		}
+
+
+		while( current != null){
+			int count = dataCountMap.get(current.data) ;
+			//			if ( count )
+
+		}
+		return head ;
+	}
+
+
+	public static void printReverse( Node head ){
+
+		Node current = head ;
+
+		if( current == null)
+			return ;
+
+		printReverse(current.next) ;
+		System.out.printf("%3d", current.data);
+	}
+
+
+	public static Node reverse( Node head ){
+
+		Node current = head ;
+
+		// BASE CASE
+		if( current == null)
+			return null ;
+
+		current = reverse(current.next) ;
+		return current ;
+	}
+
+	public static Node sum( Node head1, Node head2) {
+
+		LinkedList sumList = new LinkedList() ;
+		Node current1 = head1, current2 = head2 ;
+
+		int temp ;
+		int carry = 0 ;
+
+		while( true )
+		{
+			if( current1 == null && current2 == null){
+				if( carry == 0){
+					System.out.println("\nEnd");
+				}else{
+					sumList.appendToTail( carry ) ; // When both lists have become empty, but have a carry over remaining.
+				}
+				return sumList.head ;
+			}
+			else if( current1 == null ) {
+				temp = current2.data + carry ;
+				if( temp > 10 ){
+					sumList.appendToTail( temp % 10) ;
+					sumList.appendToTail( temp / 10) ;
+				}else{
+					sumList.appendToTail( temp) ;
+				}
+				current2 = current2.next ;
+			}
+			else if( current2 == null){
+				temp = current1.data + carry ;
+				if( temp > 10 ){
+					sumList.appendToTail( temp % 10) ;
+					sumList.appendToTail( temp / 10) ;
+				}else{
+					sumList.appendToTail( temp ) ;	
+				}
+				current1 = current1.next ;
+			}
+			else{
+				while( current1 != null && current2 != null ){
+					Node current3 = new Node() ;
+					temp = current1.data + current2.data + carry ;
+					if( temp < 10){
+						current3.data = temp ;
+					}else{
+						current3.data = temp % 10;
+						carry = temp / 10 ; 
+					}
+					// Add the new node to the sum list.
+					sumList.appendToTail(current3.data) ;
+
+					// Advance all 3 pointers.
+					current1 = current1.next ;
+					current2 = current2.next ;
+					current3 = current3.next ;
+				}
+			}
+
+		}
+	}
+	/**
+	 * Splits the source headed List into 2 sublists headed at ahead & bHead.
+	 * @param source
+	 * @param aHead
+	 * @param bHead
+	 */
+	public static void alternatingSplit( Node sourceHead, Node aHead, Node bHead){
+
+		Node current = sourceHead ;
+		Node aCurrent = aHead ;
+		Node bCurrent = bHead ;
+
+		if( current == null )// empty list
+			return ;
+		else if( current.next == null ) // 1 node
+			aCurrent = current ;
+
+		while( current !=null ){
+			// neither is null.
+			aHead = current ;
+			aHead = aHead.next ;
+			current = current.next ;
+
+			if( current != null){
+				bHead = current ;
+				bHead = bHead.next ;
+				current = current.next ;
+			}
+		}
+
+
+
+		System.out.println("\nThe initial list is :");
+		current = sourceHead ;
+		while( current != null ){
+			System.out.printf("%4d", current.data);
+			current = current.next ;
+		}
+
+//		Node current1 = aCurrent ;
+		Node current2 = bCurrent ;
+
+		System.out.println("\nThe first sublist is :");
+
+		while( aCurrent != null ){
+			System.out.printf("%4d", aCurrent.data);
+			aCurrent = aCurrent.next ;
+		}
+		System.out.println("\nThe second sublist is :");
+		while( current2 != null ){
+			System.out.printf("%4d", current2.data);
+			current2 = current2.next ;
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

@@ -1,0 +1,34 @@
+package geek.linked.lists;
+
+public class LinkedList {
+
+	// the dummy.next pointer stores the address of the first node in the LL OR it plays the role of head.
+	Node dummyNode;
+	
+	/*
+	 *  We will maintain 2 pointers - head & tail to point to the starting node of the LL
+	 *  and the other pointing to the last node in the LL.
+	 */
+	Node head ;
+	Node tail ;
+	
+	public LinkedList(){
+		head = null ;
+		dummyNode.next = null ; 
+		tail = dummyNode ;
+	}
+	
+	/**
+	 * This method creates a new Node for the data
+	 * and inserts the node at the head.
+	 * @param data
+	 */
+	public Node push( int data ){
+		Node newNode = new Node(data, null) ;
+		newNode.next = head ;
+		head = newNode ;
+		return head ;
+		
+	}
+	
+}

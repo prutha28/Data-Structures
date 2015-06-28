@@ -1,0 +1,12 @@
+package heap.data.structure;
+
+public class HeapTest {
+
+	public static void main(String[] args) {
+
+		int[] arr = { 4, 8, 1, 14, 8, 9, 10, 8 } ;
+	
+		Heap heap = new Heap(arr) ;
+	}
+
+}

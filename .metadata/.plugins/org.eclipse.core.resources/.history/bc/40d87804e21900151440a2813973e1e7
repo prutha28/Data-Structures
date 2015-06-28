@@ -1,0 +1,9 @@
+package representation.of.graphs.using.adjacency.list;
+
+public class AdjacencyList {
+
+	int numberOfNodes ; // vertices
+	
+	Node[] adjacencyList ;
+	
+}

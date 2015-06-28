@@ -1,0 +1,16 @@
+package representation.of.graphs;
+
+public class Node {
+ 
+	int weight ;	// weight of the Node.
+	LinkageNode> linkNodes ;
+
+	public Node(int weight, LinkageNode linkNodes) {
+		this.weight = weight;
+		this.linkNodes = linkNodes;
+	}
+	
+	public Node() {
+		this( -1, null ) ;
+	}
+}

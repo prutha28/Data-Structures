@@ -1,0 +1,30 @@
+package applications.of.stack;
+
+public class Span {
+
+	int numDays ;
+	float[] prices ;
+	int span[] ;
+	
+	public Span( int numDays ){
+		this.numDays =numDays ;
+		prices = new float[ numDays ] ;
+		span = new int[ numDays ] ;
+	}
+	
+	
+	public void calculateSpan( int prices[]){
+		
+		int i = (prices.length - 1) ;
+		int j ;
+		
+		while( i >= 0){
+			j = (i -1 ) ;
+			
+			while( prices[ j ] < prices[ i ]) j-- ;
+			
+		}
+		
+	}
+	
+}

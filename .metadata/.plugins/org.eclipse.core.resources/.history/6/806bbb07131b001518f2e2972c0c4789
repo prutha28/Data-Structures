@@ -1,0 +1,11 @@
+package heap.data.structure;
+
+public interface IHeap {
+
+	public int[] buildMaxHeap( int A[] ) ;
+	
+	public void maxHeapify( int A[]) ;
+	
+	public int getMaxElement( int A[]) ;
+	
+}

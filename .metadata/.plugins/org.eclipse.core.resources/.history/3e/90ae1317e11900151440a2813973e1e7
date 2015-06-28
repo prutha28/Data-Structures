@@ -1,0 +1,5 @@
+package representation.of.graphs.using.adjacency.list;
+
+public class AdjacencyMatrix {
+
+}

@@ -1,0 +1,20 @@
+package circular.linked.lists;
+
+
+public class CircularLinkedListTest {
+
+	public static void main( String[] args){
+		
+		CircularLinkedList cc= new CircularLinkedList() ;
+		cc.entry = cc.addNode(cc.entry, 9) ;
+		cc.entry = cc.addNode(cc.entry, 5) ;
+		cc.entry = cc.addNode(cc.entry, 6) ;
+		cc.entry = cc.addNode(cc.entry, 4) ;
+		cc.entry = cc.addNode(cc.entry, 2) ;
+		System.out.println("\nAfter inserting 9, 5, 6, 4, 2 in that sequence.");
+		cc.display( cc.entry) ;
+		cc.entry = cc.removeNode(cc.entry) ;
+		System.out.println("\nAfter deleting element from the head.");
+		cc.display( cc.entry) ;
+	}
+}

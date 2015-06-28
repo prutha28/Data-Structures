@@ -1,0 +1,62 @@
+package applications.of.stack;
+
+import java.util.Random;
+
+import list.implementation.of.stacks.Stack;
+
+public class SpanUsingStack {
+
+	int numDays ;
+	float[] prices ;
+	int[] span ;
+	Stack spanStack ;
+	
+	public SpanUsingStack( int numDays ){
+		this.numDays = numDays ;
+		span = new int[ numDays ] ;
+		spanStack = new Stack() ;
+		prices = new float[ numDays ] ;
+		Random random = new Random() ;
+		
+		for (int i = 0; i < prices.length; i++) {
+			prices[ i ] = random.nextFloat() * 100 ;
+			spanStack.push( prices[ i ] ) ;
+		}
+	}
+	
+	/**
+	 * 
+	 * @return Stack of indices.
+	 */
+	public Stack calculateSpans(){
+		Stack S = new Stack() ;
+		S.push( prices[ 0 ] ) ;
+		
+		// The Span value of the first element is always 1.
+		span[ 0 ] = 1 ;
+		
+		int i = 1 ;
+		
+		// Use i to iterate over the prices array.
+		while( i < prices.length){
+			
+			int top = (Integer)S.elementAtTop() ;
+			
+			// As long as the Stack is not empty AND if the element at the top of the stack is less than the current element, pop it off.
+			while( !S.isEmpty() && prices[top] < prices[i])
+				S.pop() ;
+			
+			// When the while loop exits, it is either because the Stack is empty ...  which means all the elements in the stack were less than current element 
+			// or because the element at the top was greater than the current element. So h(i) is top()
+			
+			if( S.isEmpty()){
+				
+			}else{ // top > prices[ i] => we found h (i ) , which is top
+				span[i] = (i - (Integer)S.elementAtTop());
+				
+			}
+		}
+		
+	}
+	
+}

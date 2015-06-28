@@ -1,0 +1,7 @@
+package heap.data.structure;
+
+public interface IHeap {
+
+	public void maxHeapify( int A[])
+	
+}

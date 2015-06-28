@@ -1,0 +1,5 @@
+package heap.data.structure;
+
+public interface IHeap {
+
+}

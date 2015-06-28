@@ -1,0 +1,11 @@
+package geek.linked.lists;
+
+public class LinkedList {
+
+	
+	public LinkedList(){
+		
+	}
+	
+	
+}

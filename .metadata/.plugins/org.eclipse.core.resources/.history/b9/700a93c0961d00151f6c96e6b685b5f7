@@ -1,0 +1,78 @@
+package circular.linked.lists;
+
+public class CircularLinkedList implements ICircularLinkedList {
+
+	class Node{
+		private int data ;
+		private Node next ;
+
+		public Node(){
+			this.data  = -1;
+			this.next = null ;
+		}
+
+		public Node( int data ){
+			this.data  = data ;
+			this.next = null ;
+		}
+	}
+
+
+	Node entry ;
+
+	//	Empty Linked list.
+	public CircularLinkedList(){
+		this.entry = null ;
+	}
+
+	/**
+	 * Adding a node to the end of the list.
+	 * @param entry
+	 */
+	public void addNode( Node entry, int element ) 
+	{
+		// We only have the head node with us.
+		// 1. Copy the data of the head node into the new node.
+		Node newNode = new Node() ;
+		newNode.data = entry.data ;
+		newNode.next = entry.next ;
+
+		// 2. Make the head.next point to the new Node. 
+		entry.next = newNode ;
+		
+		// 3. Copy new data into head node.
+		entry.data = element ;
+		
+		// 4. Finally we move the head to the next node,
+		// which makes it as if we added the new element before the head.
+		entry = entry.next ;
+	}
+
+	/**
+	 * Removing node from the start of the list.
+	 * @param entry
+	 */
+	public void removeNode( Node entry) 
+	{
+		// We only have a pointer to the node that follows the head node.
+		// 1. Copy the data from the head.next node into head node.
+		entry.data = entry.next.data ;
+		// 2. Make the head node point to what the next node was pointing to.
+		entry.next = entry.next.next ;
+	}
+	
+	
+	public int size( Node entry )
+	{
+		int count = 1 ;
+		Node current = entry ;
+		
+		while( current != null ){
+			count++ ;
+		}
+		
+		return count ;
+		
+	}
+}
+

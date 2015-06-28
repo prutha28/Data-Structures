@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;list.implementation.of.stacks&apos; to &apos;array.implementation.of.stacks&apos;&#x0D;&#x0A;- Original project: &apos;Stacks&apos;&#x0D;&#x0A;- Original element: &apos;Stacks/src/list.implementation.of.stacks&apos;&#x0D;&#x0A;- Renamed element: &apos;Stacks/src/array.implementation.of.stacks&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings&#x0D;&#x0A;- Rename subpackages of the package" description="Rename package &apos;list.implementation.of.stacks&apos;" flags="589830" hierarchical="true" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;list.implementation.of.stacks" name="array.implementation.of.stacks" qualified="false" references="true" stamp="1424066997266" textual="false" version="1.0"/>
+</session>

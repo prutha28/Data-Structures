@@ -1,0 +1,45 @@
+package circular.linked.lists;
+
+public class CircularLinkedList implements ICircularLinkedList {
+
+	class Node{
+		private int data ;
+		private Node next ;
+
+		public Node(){
+			this.data  = -1;
+			this.next = null ;
+		}
+
+		public Node( int data ){
+			this.data  = data ;
+			this.next = null ;
+		}
+	}
+
+	
+	Node entry ;
+	
+	public CircularLinkedList(){
+		this.entry = null ;
+	}
+	
+	/**
+	 * Adding a node to the start of the list.
+	 * @param entry
+	 */
+	public void addNode( Node entry) 
+	{
+		
+	}
+
+	/**
+	 * Removing node from the start of the list.
+	 * @param entry
+	 */
+	public void removeNode( Node entry) 
+	{
+
+	}
+}
+

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 2 packages to &apos;collections/src/sets&apos;&#x0D;&#x0A;- Original project: &apos;sets&apos;&#x0D;&#x0A;- Destination element: &apos;collections/src/sets&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     sets/src/basicSetOperations&#x0D;&#x0A;     sets/src/concurrentModificationDemo&#x0D;&#x0A;- Update references to refactored element" description="Move packages" destination="=collections/src&lt;sets" element1="/src&lt;basicSetOperations" element2="/src&lt;concurrentModificationDemo" flags="589830" fragments="2" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.movePackages" stamp="1423909831483" version="1.0"/>
+</session>

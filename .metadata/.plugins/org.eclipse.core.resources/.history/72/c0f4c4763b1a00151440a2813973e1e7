@@ -1,0 +1,15 @@
+package representation.of.graphs.using.adjacency.list;
+
+import java.util.List;
+
+public class AdjacencyList {
+
+	int numberOfNodes ; // vertices
+	/**
+	 * This is an array of pointers for each vertex.
+	 * If a vertex v1 is connected to v2, v3 , v5
+	 * Then we will have adjacencyList[0] pointing to Node2, Node2 & Node5 
+	 */
+	Node[] adjacencyList ; // an array of pointers to Nodes.
+	
+}

@@ -1,0 +1,17 @@
+package ordered.linked.lists;
+
+public interface IOrderedLinkedList {
+
+	public void insert( int data ) ;
+	
+	public void delete( int data ) ;
+	
+	public boolean contains( int data ) ;
+	
+	public LinkedList union( LinkedList other ) ;
+	
+	public LinkedList intersection( LinkedList other ) ;
+	
+	public int size() ;
+	
+}

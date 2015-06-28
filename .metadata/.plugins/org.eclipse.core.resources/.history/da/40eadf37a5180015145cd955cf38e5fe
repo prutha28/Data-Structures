@@ -1,0 +1,14 @@
+package sorting.merge;
+
+import java.util.Scanner;
+
+public class MergeSort_Cormen_Fashion_Test {
+
+	public static void main(String[] args) {
+
+		Scanner input = new Scanner( System.in ) ;
+		System.out.println("\nHow many elements ?");
+		
+	}
+
+}

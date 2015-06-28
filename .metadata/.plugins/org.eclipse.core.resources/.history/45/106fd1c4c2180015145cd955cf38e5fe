@@ -1,0 +1,69 @@
+package sorting.quick;
+
+public class QuickSort {
+
+	/**
+	 * Sorts the array contained within the indices p & r ( both inclusive).
+	 * @param data
+	 * @param p
+	 * @param r
+	 */
+	public void QUICKSORT( int data[], int p, int r ){
+
+		if( p >= r)
+			return ;
+		else{	// p < r
+
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	private int partition( int A[]){
+
+		int start = 0 ; 
+		int end = A.length -1 ;
+		int pivot = A[start] ;
+
+		// We will keep 2 counters .. one at the index 2 i.e right after the pivot.
+		// and the second at the last index.
+
+		// As long as the element being parsed is less than pivot, retain it in its position 
+		// and advance the pointer.
+
+		// Similarly for the end pointer.
+
+		while( start < end ){
+
+			while(( start < end ) && ( A[start] <= pivot ))
+				start++ ;
+
+			while(( start < end ) && ( A[end] > pivot ))
+				end-- ;
+			if( start < end ){
+				// Else swap the two
+				int temp = A[start] ;
+				A[start] = A[end] ;
+				A[end] = temp ;
+			}
+		}
+
+		return start ;
+	}
+
+
+}

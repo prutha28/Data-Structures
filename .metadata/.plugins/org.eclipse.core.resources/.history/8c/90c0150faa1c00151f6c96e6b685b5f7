@@ -1,0 +1,18 @@
+package geek.linked.lists;
+
+public class AlternateSplitInLLTest {
+
+	public static void main( String[] args ){
+		
+		int arr[] = { 1, 2, 3, 4, 5, 6, 7 } ;
+		
+		LinkedList list = new LinkedList( arr ) ;
+		// Empty sublist.
+		LinkedList a = new LinkedList() ;
+		LinkedList b = new LinkedList() ;
+		
+		AlternateSplitInLL.alterateSplit(list.head, a.head, b.head) ;
+		
+	}
+	
+}

@@ -1,0 +1,13 @@
+package representation.of.graphs.using.adjacency.matrix;
+
+public class AdjacencyMatrix {
+
+	int numberOfNodes ;
+	
+	/**
+	 * The adjacency Matrix for n vertices is a n x n matrix M such that
+	 * whenever there is an edge from vertex i to vertex j, M [ i, j] = 1
+	 * otherwise it is 0.
+	 */
+	boolean[][] adjacencyMatrix = new boolean[numberOfNodes ][ numberOfNodes] ;
+}

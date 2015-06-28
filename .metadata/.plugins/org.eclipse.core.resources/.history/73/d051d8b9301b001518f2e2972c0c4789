@@ -1,0 +1,24 @@
+package heap.data.structure;
+
+public interface IHeap {
+
+	public int[] buildMaxHeap( int A[] ) ;
+	
+	public void maxHeapify( int A[], int index ) ;
+	
+	public int getMaxElement( int A[]) ;
+	
+	public int removeMaxElement( int A[]) ;
+	
+	public int parentIndex( int nodeIndex ) ;
+	
+	public int leftChildIndex( int nodeIndex ) ;
+	
+	public int rightChildIndex( int nodeIndex ) ;
+	
+	public int parent( int nodeIndex ) ;
+	
+	public int left( int nodeIndex ) ;
+	
+	public int right( int nodeIndex ) ;
+}

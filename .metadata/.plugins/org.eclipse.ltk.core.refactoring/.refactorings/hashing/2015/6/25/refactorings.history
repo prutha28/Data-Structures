@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;hasing.basics&apos; to &apos;hashing.basics&apos;&#x0D;&#x0A;- Original project: &apos;hashing&apos;&#x0D;&#x0A;- Original element: &apos;hashing/src/hasing.basics&apos;&#x0D;&#x0A;- Renamed element: &apos;hashing/src/hashing.basics&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings&#x0D;&#x0A;- Rename subpackages of the package" description="Rename package &apos;hasing.basics&apos;" flags="589830" hierarchical="true" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;hasing.basics" name="hashing.basics" qualified="false" references="true" stamp="1434373975455" textual="false" version="1.0"/>
+</session>

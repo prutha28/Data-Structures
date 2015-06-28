@@ -1,0 +1,28 @@
+package sorting.merge;
+
+import java.util.Scanner;
+
+public class MergeSort_Cormen_Fashion_Test {
+
+	public static void main(String[] args) {
+
+		Scanner input = new Scanner( System.in ) ;
+		System.out.println("\nHow many elements ?");
+		int n = input.nextInt() ;
+		
+		int A[] = new int[ n ] ;
+		
+		for (int i = 0; i < n; i++) {
+			System.out.printf("Enter A[ %d ]" , i );
+			A[ i ] = input.nextInt() ;
+		}
+		
+		System.out.println("\nThe contents of the array before sorting are : ");
+		
+		for (int i = 0; i < A.length; i++) {
+			System.out.printf("%4d", A[ i ]);
+		}
+		
+	}
+
+}

@@ -1,0 +1,137 @@
+package heap.data.structure;
+
+public class Heap implements IHeap {
+
+	int[] heapArray ;
+	int heapSize ;	// represents those elements in the heapArray that satisfy heap property.
+
+	/**
+	 *  0 <= heapSize <= heapArray.length
+	 */
+
+	/**
+	 * This method takes an input array A and 
+	 * returns an array that satisfies the heap-property.
+	 */
+
+	public Heap(){
+		this.heapSize = 0 ;
+	}
+
+	public Heap( int[] array){
+		this.heapArray = array ;
+		this.heapSize = heapArray.length ;
+	}
+
+	public int[] buildMaxHeap() {
+
+		// Leaves are already heaps
+
+		// So start from the last internal node.
+
+		int lastInteralNode = getLastInternalNode() ;
+
+		for (int i = lastInteralNode ; i >= 0; i-- ) {
+			maxHeapify(heapArray, i ) ;
+		}
+
+		return heapArray;
+	}
+
+	public void maxHeapify(int[] A, int index ) {
+
+		int temp ;
+
+		if( index < 0 )
+			return;
+
+		if( A[ index ] < left(index)){
+			// Swap root & left child so that max of the two becomes the new root.
+			temp = A[ index ] ;
+			A[ index ] = A[ leftChildIndex(index)] ;
+			A[ leftChildIndex(index)] = temp ;
+			maxHeapify(A, leftChildIndex(index)) ;
+		}
+
+		if( A[ index ] < right(index)){
+			// Swap root & right child so that max of the two becomes the new root.
+			temp = A[ index ] ;
+			A[ index ] = A[ rightChildIndex(index)] ;
+			A[ rightChildIndex(index)] = temp ;
+			maxHeapify(A, rightChildIndex(index)) ;		// RECURSIVE / INDUCTIVE Step
+		}
+		
+		heapArray = A ;
+	}
+
+	public int getMaxElement() {
+		maxHeapify(heapArray, heapSize - 1) ;
+		return heapArray[ 0 ] ;
+	}
+
+	public void removeMaxElement() {
+		
+		//1. Build a max heap
+		maxHeapify( heapArray, heapSize - 1) ;
+		
+		// 2. Exchange the first and the last elements.
+		int temp = heapArray[ 0 ] ; // element to remove
+		// swap it with the last element.
+		heapArray[0] = heapArray[heapSize - 1] ;
+		heapArray[heapSize - 1] = temp ;
+		// 3. Decrement heap size since we will store the max element in the last index.
+		heapSize = heapSize - 1 ;
+	}
+
+	public int parentIndex(int nodeIndex) {
+		return (nodeIndex - 1) / 2;
+	}
+
+	public int leftChildIndex(int nodeIndex) {
+		return ( 2 * nodeIndex + 1 );
+	}
+
+	public int rightChildIndex(int nodeIndex) {
+		return ( 2 * nodeIndex + 2 );
+	}
+
+	public int parent(int nodeIndex) {
+		return heapArray[parentIndex(nodeIndex) ];
+	}
+
+	public Integer left(int nodeIndex) {
+		int lastInternalNode = getLastInternalNode() ;
+
+		if( leftChildIndex(nodeIndex) <= lastInternalNode)
+			return heapArray[leftChildIndex(nodeIndex) ];
+		else
+			return null ;
+	}
+
+	private int getLastInternalNode() {
+		return ((int) Math.floor(heapSize /2) - 1 ) ;
+	}
+
+	public Integer right(int nodeIndex) {
+		int lastInternalNode = getLastInternalNode() ;
+		if( rightChildIndex(nodeIndex) < lastInternalNode)
+			return heapArray[rightChildIndex(nodeIndex) ];
+		else
+			return null ;
+	}
+
+
+	public void displayHeap(){
+		for (int i = 0; i < heapArray.length; i++) {
+			System.out.printf("%4d", heapArray[i]);
+
+		}
+	}
+
+	public void sort() {
+
+		for (int i = 0; i < heapSize; i++) {
+			removeMaxElement() ;
+		}
+	}
+}

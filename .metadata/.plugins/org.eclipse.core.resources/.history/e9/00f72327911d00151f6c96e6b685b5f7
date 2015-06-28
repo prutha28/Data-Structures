@@ -1,0 +1,10 @@
+package circular.linked.lists;
+
+import circular.linked.lists.CircularLinkedList.Node;
+
+public interface ICircularLinkedList {
+
+	public void addNode( Node entry) ;
+	public void removeNode( Node entry) ;
+	
+}

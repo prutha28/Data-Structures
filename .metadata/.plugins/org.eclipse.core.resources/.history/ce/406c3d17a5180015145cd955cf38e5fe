@@ -1,0 +1,13 @@
+package sorting.merge;
+
+public class MergeSort_Cormen_Fashion_Test {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

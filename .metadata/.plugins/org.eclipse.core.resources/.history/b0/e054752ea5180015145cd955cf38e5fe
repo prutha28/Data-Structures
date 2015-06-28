@@ -1,0 +1,9 @@
+package sorting.merge;
+
+public class MergeSort_Cormen_Fashion_Test {
+
+	public static void main(String[] args) {
+
+	}
+
+}

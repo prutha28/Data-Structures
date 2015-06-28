@@ -1,0 +1,14 @@
+package circular.linked.lists;
+
+public class CircularLinkedList {
+
+	class Node{
+		int data ;
+		Node next ;
+	}
+	
+	public Node(){
+		
+	}
+	
+}

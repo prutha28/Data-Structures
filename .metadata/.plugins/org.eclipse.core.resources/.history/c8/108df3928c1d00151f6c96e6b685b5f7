@@ -1,0 +1,84 @@
+package sorted.arrays;
+
+/**
+ * @author prutha!
+ *
+ *	This will consist of an underlying array of GameEntries of some fixed size.
+ *	that we shall call capacity.
+ */
+
+public class ScoreCard {
+
+	public static final int CAPACITY = 10 ;
+
+	// Actual number of entries. ( <= CAPACITY)
+	private int numEntries ;
+	// This array is stored in an ordered manner from largest to lowest.
+	private GameEntry[] board ;	
+
+	public ScoreCard(){
+		board = new GameEntry[ CAPACITY ] ;
+		numEntries = 0 ;
+	}
+
+
+	public void addEntry( GameEntry entry)
+	{
+		if(( numEntries < CAPACITY) || ( entry.getScore() > board[ numEntries - 1].getScore())){
+			// Seek the correct position of insertion.
+			int j = 0 ;
+
+			while((j <= numEntries) && (board[j].getScore() > entry.getScore())){
+				// Continue to increase j.
+				j++ ;
+			}
+
+			int index = numEntries - 1 ;
+			if( board[j].getScore() < entry.getScore() ){
+				while( index >= j )
+				{	// Shift the elements upward.
+					board[ index + 1 ] = board[ index ] ;
+					index-- ;
+				}
+			}
+			numEntries++ ;
+		}else
+		{
+			if( entry.getScore() > board[ numEntries - 1].getScore()){
+
+			}else{
+				System.out.println("\nArray is full.");
+			}
+
+		}
+	}
+
+	public GameEntry remove( int index ){
+		
+		int i = index ;
+	
+		if( i < 0 || i >= numEntries)
+			throw new IndexOutOfBoundsException() ;
+		
+		GameEntry entry = board[ index ] ;
+		// Code to move the elements 1 back.
+		while( i <= numEntries -2)
+		{
+			board[ i ] = board[ i + 1 ] ;
+			i++ ;
+		}
+		
+		// DO NOT FORGET THIS.
+		numEntries-- ;
+		// Make the element in the last index null.
+		board[ numEntries - 1] = null ;
+		return entry ;
+	}
+
+	public void display(){
+		for (int i = 0; i < board.length; i++) {
+			System.out.println(board[ i ]);
+			System.out.println();
+		}
+	}
+}

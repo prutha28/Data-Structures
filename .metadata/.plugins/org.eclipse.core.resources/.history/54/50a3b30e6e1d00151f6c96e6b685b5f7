@@ -1,0 +1,8 @@
+package score.card.game;
+
+public class GameEntry {
+
+	private String name ;	// Name of the person who has scored.
+	private int score ;		// Score of the person.
+	
+}

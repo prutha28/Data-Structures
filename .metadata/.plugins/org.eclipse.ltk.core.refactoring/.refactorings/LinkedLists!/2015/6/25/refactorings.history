@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 3 elements to &apos;LinkedLists!/src/ordered.linked.lists&apos;&#x0D;&#x0A;- Original project: &apos;LinkedLists!&apos;&#x0D;&#x0A;- Destination element: &apos;LinkedLists!/src/ordered.linked.lists&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     unordered.linked.lists.LinkedList.java&#x0D;&#x0A;     unordered.linked.lists.LinkedListTest.java&#x0D;&#x0A;     unordered.linked.lists.ILinkedList.java" description="Copy compilation units" destination="/src&lt;ordered.linked.lists" element1="/src&lt;unordered.linked.lists{LinkedList.java" element2="/src&lt;unordered.linked.lists{LinkedListTest.java" element3="/src&lt;unordered.linked.lists{ILinkedList.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1434732043729" units="3" version="1.0"/>
+</session>

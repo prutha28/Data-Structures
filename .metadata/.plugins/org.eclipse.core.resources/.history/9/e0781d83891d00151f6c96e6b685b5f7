@@ -1,0 +1,13 @@
+package score.card.game;
+
+public class ScoreCardTest {
+
+	public static void main( String[] args ){
+		ScoreCard scores = new ScoreCard() ;
+		scores.addEntry(new GameEntry("Jon Snow", 50)) ;
+		scores.addEntry(new GameEntry("Arya Stark", 80)) ;
+		scores.addEntry(new GameEntry("Robb Stark", 40)) ;
+		scores.addEntry(new GameEntry("Sansa stark", 20)) ;
+		scores.display();
+	}
+}

@@ -1,0 +1,55 @@
+package score.card.game;
+
+/**
+ * @author prutha!
+ *
+ *	This will consist of an underlying array of GameEntries of some fixed size.
+ *	that we shall call capacity.
+ */
+
+public class ScoreCard {
+
+	public static final int CAPACITY = 10 ;
+
+	// Actual number of entries. ( <= CAPACITY)
+	private int numEntries ;
+	// This array is stored in an ordered manner from largest to lowest.
+	private GameEntry[] board ;	
+
+	public ScoreCard(){
+		board = new GameEntry[ CAPACITY ] ;
+		numEntries = 0 ;
+	}
+	
+	
+	public void addEntry( GameEntry entry){
+		int j = numEntries - 1 ;	// index of teh last element.
+//		int lowest = board[ j ].getScore() ;
+		int insertP ;
+		while( j > 0 && entry.getScore() > board[j].getScore()){
+			j-- ;
+		}
+		// Point of insertion is j +1
+		j++ ;
+		insertP = j ;
+		// shift all elements beyond j+1
+		while( j < numEntries ){
+			board[ j + 1 ] = board[ j ] ;
+		}
+		
+		board[ insertP ] = entry ;
+	}
+
+	public GameEntry removeEntry( int index ){
+		GameEntry entry = board[ index ] ;
+
+		return entry ;
+	}
+	
+	public void display(){
+		for (int i = 0; i < board.length; i++) {
+			System.out.println(board[ i ]);
+			System.out.println();
+		}
+	}
+}

@@ -1,0 +1,9 @@
+package applications.of.stack;
+
+public class SpanUsingStackTest {
+
+	public static void main(String[] args) {
+
+	}
+
+}

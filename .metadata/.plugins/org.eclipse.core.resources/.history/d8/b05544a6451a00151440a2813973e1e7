@@ -1,0 +1,41 @@
+package representation.of.graphs;
+
+public class Node {
+ 
+	int weight ;	// weight of the Node.
+	LinkageNode linkNodes ;
+
+	public Node(int weight, LinkageNode linkNodes) {
+		this.weight = weight;
+		this.linkNodes = linkNodes;
+	}
+	
+	public Node() {
+		this( -1, null ) ;
+	}
+	
+	public void connectVertices( int weight1 , int weight2 ){
+		
+		Node node1 = new Node( weight1, null ) ;
+		Node node2 = new Node( weight2, null ) ;
+		
+		// node is not connected to any other node yet.
+		if( node1.linkNodes == null ){
+			node1.linkNodes.nextNode = node2 ;
+			node1.linkNodes.next = null ;	
+		}else{
+			LinkageNode current = node1.linkNodes ;
+			while( current.next != null ){
+				current = current.next ;
+			}
+			current.nextNode = 
+			current.next = null ; 
+		}
+		
+	}
+	
+	
+	public Node getNodeForWeight( int weight ){
+		return Node() ;
+	}
+}

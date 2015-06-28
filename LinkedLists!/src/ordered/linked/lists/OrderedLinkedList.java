@@ -1,0 +1,213 @@
+package ordered.linked.lists;
+
+class Node{
+	int data ;
+	Node next ;
+
+	public Node( int data){
+		this.data = data ;
+		this.next = null ;
+	}
+}
+
+public class OrderedLinkedList implements IOrderedLinkedList {
+
+	Node head ;
+	Node tail ; // No need of tail for a sorted list.
+
+	public OrderedLinkedList(){
+		this.head = null ;
+		this.tail = null ;
+	}
+
+	public OrderedLinkedList( OrderedLinkedList other){
+		this.head = other.head ;
+		this.tail = other.tail ;
+	}
+
+	// Insert by finding the correct point of insertion ... O( n)
+	public void insert(int data) {
+
+		Node newNode = new Node(data) ;
+
+		if( head == null){
+			head = newNode ;
+			return ;
+		}else{
+			Node current = head.next ;
+			Node prev = head ;
+
+			while( current != null && current.data < data){
+				prev = current ;
+				current = current.next ;
+			}
+
+			if( current == null ){
+				// Insertion at the end.
+				current = newNode ;
+				prev.next = newNode ;
+			}else{ // if( current.data >data ) 7> 3 current 7
+				newNode.next = current ;
+				prev.next = newNode ;
+			}
+		}
+	}
+
+	// First search, then delete.
+	public void delete(int data) {
+
+		if( head == null){ // List is empty.
+			System.out.println("\nData wasnt found");
+			return ;
+		}else if( head != null && head.next == null  && head.data == data){ // Only 1 element in list & that is to be del
+			head = null; 
+			return ;
+		}
+
+		// For all the following cases , 1. head is not null.
+		//										 2. Data to be is not at the start 
+		Node nodeToDel = null ;
+		Node current = head.next ;
+		Node prev = head ;
+
+		// Traverse along the list.
+		while( current != null && current.data != data){
+			prev = current ;
+			current = current.next ;
+		}
+
+		if( current == null){// Data not found even after traversing whole list.
+			System.out.println("\nData wasnt found");
+			return ;
+		}else{ // if data is found somewhere in between.
+			nodeToDel = current ;
+			prev.next = current.next ;
+			current = null ;
+			return ;
+		}
+	}
+
+	public boolean contains(int data) {
+
+		Node current = head ;
+
+		if( head == null){
+			return false ;
+		}
+
+		while( current !=null )
+		{
+			if( current.data == data){
+				return true ;
+			}
+			current =  current.next ;
+		}
+
+		return false ;
+	}
+
+
+
+	public OrderedLinkedList union( OrderedLinkedList otherList) {
+
+		OrderedLinkedList union = new OrderedLinkedList( this) ;
+		Node unionHead = union.head ;
+
+		if( this.head == null && otherList.head == null )
+			return null ;
+
+		else if( this.head == null && otherList.head != null)
+			return otherList ;
+
+		else if( this.head != null && otherList.head == null)
+			return this ;
+
+		Node otherHead = otherList.head ;
+
+		// MERGE ROUTINE.
+		while( head != null && otherHead !=null ){
+
+			if( head.data < otherHead.data){
+				// Advance all pointers.
+				unionHead.data = head.data ;
+				head = head.next ;
+				unionHead = unionHead.next ;
+			}
+
+			else if( head.data > otherHead.data){
+				// Advance all pointers.
+				unionHead.data = otherHead.data ;
+				otherHead = otherHead.next ;
+				unionHead = unionHead.next ;
+			}
+
+			else{//if( head.data == otherHead.data){
+				// Advance all pointers.
+				unionHead.data = head.data ;
+				head = head.next ;
+				otherHead = otherHead.next ;
+				unionHead = unionHead.next ;
+			}
+
+		}
+
+		while( head != null  ){
+			unionHead.data = head.data ;
+			head = head.next ;
+			unionHead = unionHead.next ;
+		}
+
+		while( otherHead !=null ){
+			unionHead.data = otherHead.data ;
+			otherHead = otherHead.next ;
+			unionHead = unionHead.next ;
+		}
+
+		return union ;
+	}
+
+
+	public OrderedLinkedList intersection( OrderedLinkedList otherList) {
+		OrderedLinkedList intersection = new OrderedLinkedList() ;
+		Node head1 = this.head ;
+
+		while( head1 !=null ){
+			if( otherList.contains(head1.data)){
+				intersection.insert(head1.data) ;
+			}
+			head1 = head1.next ;
+		}
+
+		return intersection ;
+	}
+
+	public int size() {
+		if( head == null){
+			return 0;
+		}
+
+		int count = 0 ;
+		Node current = head ;
+
+		while( current != null ){
+			current = current.next ;
+			count++ ;
+		}
+		return count ;
+	}
+
+	public void displayList( Node head ) {
+
+		if( head == null){
+			System.out.println("\nList is empty");
+			return ;
+		}
+		Node current = head ;
+
+		while( current !=null )
+		{
+			System.out.printf("%4d", current.data );
+			current = current.next ;
+		}
+	}
+}

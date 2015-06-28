@@ -1,0 +1,9 @@
+package sorting.quick;
+
+public class QuickSortTest {
+
+	public static void main(String[] args) {
+
+	}
+
+}

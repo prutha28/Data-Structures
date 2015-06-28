@@ -1,0 +1,104 @@
+package heap.data.structure;
+
+public class Heap implements IHeap {
+
+	int[] heapArray ;
+	int heapSize ;	// represents those elements in the heapArray that satisfy heap property.
+
+	/**
+	 *  0 <= heapSize <= heapArray.length
+	 */
+
+	/**
+	 * This method takes an input array A and 
+	 * returns an array that satisfies the heap-property.
+	 */
+
+	public Heap(){
+		this.heapSize = 0 ;
+	}
+
+	public Heap( int[] array){
+		this.heapArray = array ;
+		this.heapSize = heapArray.length ;
+	}
+
+	public int[] buildMaxHeap(int[] A) {
+
+		// Leaves are already heaps
+
+		// So start from the last internal node.
+
+		int lastInteralNode = (int) Math.floor(A.length /2) - 1  ;
+		
+		for (int i = lastInteralNode ; i >= 0; i-- ) {
+			maxHeapify(A) ;
+		}
+
+		return heapArray;
+	}
+
+	public void maxHeapify(int[] A, int index ) {
+
+		int temp ;
+		
+		
+		
+		if( A[ index ] < left(index)){
+			// Swap root & left child so that max of the two becomes the new root.
+			temp = A[ index ] ;
+			A[ index ] = A[ leftChildIndex(index)] ;
+			A[ leftChildIndex(index)] = temp ;
+			maxHeapify(A, leftChildIndex(index)) ;
+			
+		}
+		
+		if( A[ index ] < right(index)){
+			// Swap root & right child so that max of the two becomes the new root.
+			temp = A[ index ] ;
+			A[ index ] = A[ rightChildIndex(index)] ;
+			A[ rightChildIndex(index)] = temp ;
+			maxHeapify(A, rightChildIndex(index)) ;		// RECURSIVE / INDUCTIVE Step
+		}
+	}
+
+	public int getMaxElement(int[] A) {
+		maxHeapify(A) ;
+		return A[ 0 ] ;
+	}
+
+	public int removeMaxElement(int[] A) {
+		maxHeapify(A) ;
+		int temp = A[ 0 ] ; // element to remove
+		// swap it with the last element.
+		A[0] = A[heapSize - 1] ;
+		A[heapSize - 1] = temp ;
+		heapSize = heapSize - 1 ;
+		return temp ;
+	}
+
+	public int parentIndex(int nodeIndex) {
+		return (nodeIndex - 1) / 2;
+	}
+
+	public int leftChildIndex(int nodeIndex) {
+		return ( 2 * nodeIndex + 1 );
+	}
+
+	public int rightChildIndex(int nodeIndex) {
+		return ( 2 * nodeIndex + 2 );
+	}
+
+	public int parent(int nodeIndex) {
+		return heapArray[parentIndex(nodeIndex) ];
+	}
+
+	public int left(int nodeIndex) {
+		return heapArray[leftChildIndex(nodeIndex) ];
+	}
+
+	public int right(int nodeIndex) {
+		return heapArray[rightChildIndex(nodeIndex) ];
+	}
+
+}

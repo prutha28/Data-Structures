@@ -1,0 +1,28 @@
+package towers.of.hanoi;
+
+import list.implementation.of.stacks.Stack;
+
+public class TowerOfHanoi {
+
+	public static void move( int discNum, Stack to, Stack from, Stack via ){
+		
+		if( discNum == 0 )
+			return ;
+		
+		else if ( discNum == 1){
+			from.push(to.pop()) ;
+		}
+		else if ( discNum == 2 ){
+			from.push(to.pop()) ;
+			via.push(to.pop()) ;
+			via.push(from.pop()) ;
+		}else{
+			move(discNum - 1, to, from, via) ;	// 3 steps
+			move( 1, to, from, via ) ;			// 1 step
+			move( discNum -1 , via, from, to ) ;	// 3 steps
+		}
+	}
+	
+	
+	
+}

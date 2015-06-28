@@ -1,0 +1,22 @@
+package applications.of.stack;
+
+import list.implementation.of.stacks.Stack;
+
+public class SpanUsingStack {
+
+	int numDays ;
+	float[] prices ;
+	int[] span ;
+	
+	public SpanUsingStack( int numDays ){
+		this.numDays = numDays ;
+		span = new int[ numDays ] ;
+		prices = new float[ numDays ] ;
+	}
+	
+	public Stack calculateSpans(){
+		return null;
+		
+	}
+	
+}

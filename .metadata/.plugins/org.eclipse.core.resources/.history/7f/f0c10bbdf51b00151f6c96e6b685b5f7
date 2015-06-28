@@ -1,0 +1,14 @@
+package geek.linked.lists;
+
+public class LinkedList {
+
+	Node dummyNode;
+	Node head ;
+	Node tail ;
+	
+	public LinkedList(){
+		
+	}
+	
+	
+}

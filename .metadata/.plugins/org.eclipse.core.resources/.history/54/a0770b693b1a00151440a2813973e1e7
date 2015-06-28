@@ -1,0 +1,11 @@
+package representation.of.graphs.using.adjacency.list;
+
+import java.util.List;
+
+public class AdjacencyList {
+
+	int numberOfNodes ; // vertices
+	Node[] adjacencyList ; // an array of pointers to Nodes.
+	List<Node> listOfEdges ;
+	
+}

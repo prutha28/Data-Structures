@@ -1,0 +1,16 @@
+package circular.linked.lists;
+
+
+public class CircularLinkedListTest {
+
+	public static void main( String[] args){
+		
+		CircularLinkedList cc= new CircularLinkedList() ;
+		cc.entry = cc.addNode(cc.entry, 9) ;
+		cc.entry = cc.addNode(cc.entry, 5) ;
+		cc.entry = cc.addNode(cc.entry, 6) ;
+		cc.entry = cc.addNode(cc.entry, 4) ;
+		cc.entry = cc.addNode(cc.entry, 2) ;
+		cc.display( cc.entry) ;
+	}
+}
