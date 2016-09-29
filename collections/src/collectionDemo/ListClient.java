@@ -36,7 +36,7 @@ public class ListClient {
 		tellerList.add("sparsh") ;
 		
 		System.out.println(" Add an element to the list at index = 4");
-		tellerList.add(4, "savinay") ;
+		tellerList.add(4, "janedoe") ;
 		
 		System.out.println("Iterating the list using iterator");
 		
@@ -54,7 +54,7 @@ public class ListClient {
 			String tellerName = listItr.next() ; 
 			System.out.println(tellerName);
 			
-			if( tellerName.equals("savinay")){
+			if( tellerName.equals("janedoe")){
 				listItr.remove();
 			}
 		}
