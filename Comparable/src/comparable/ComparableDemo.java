@@ -8,7 +8,7 @@ public class ComparableDemo {
 
 	public static void main( String[] args){
 		Student s1 = new Student("prutha", 25, "111") ;
-		Student s2 = new Student("savinay", 25, "222") ;
+		Student s2 = new Student("janedoe", 25, "222") ;
 		Student s3 = new Student("sparsh", 20, "333") ;
 		Student s4 = new Student("anar" , 25, "444" );
 
